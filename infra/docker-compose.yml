@@ -1,0 +1,130 @@
+services:
+  # === DATABASE ===
+  postgres:
+    image: postgres:16
+    container_name: ecommerce_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: shopdb
+      POSTGRES_USER: shopuser
+      POSTGRES_PASSWORD: shoppass
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shopuser -d shopdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # === ADMINER (DB Browser) ===
+  adminer:
+    image: adminer
+    container_name: ecommerce_adminer
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8081:8080" 
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+
+  # === BACKEND (.NET API) ===
+  api:
+    build:
+      context: ../backend/Ecommerce.Api
+      dockerfile: Dockerfile
+    container_name: ecommerce_api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=shopdb;Username=shopuser;Password=shoppass"
+      USE_INMEMORY_DB: "false"
+      ENABLE_DB_RETRY: "false"
+    ports:
+      - "8080:8080"
+    command: ["dotnet", "Ecommerce.Api.dll"]
+
+  # === FRONTEND (Next.js) ===
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: ecommerce_frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: "http://localhost:8080"
+    ports:
+      - "3000:3000"
+
+  # === MONITORING ===
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      - api
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+
+  k6:
+    image: grafana/k6:0.50.0
+    container_name: k6_performance
+    restart: "no"
+    depends_on:
+      - api
+    environment:
+      API_BASE_URL: http://api:8080/api
+      K6_SUMMARY_PATH: /scripts/results/basic-load-summary.html
+      K6_PROMETHEUS_RW_SERVER_URL: http://prometheus:9090/api/v1/write
+    volumes:
+      - ../perf:/scripts
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        healthcheck() {
+          if command -v curl >/dev/null 2>&1; then
+            curl -sf "$1"
+          elif command -v wget >/dev/null 2>&1; then
+            wget -qO- "$1" >/dev/null 2>&1
+          else
+            echo "Warning: neither curl nor wget available for API health check." >&2
+            exit 1
+          fi
+        }
+        until healthcheck "http://api:8080/healthz"; do
+          echo "waiting for API to become healthy...";
+          sleep 3;
+        done;
+        echo "API healthy, starting k6 load test";
+        mkdir -p /scripts/results
+        chmod 777 /scripts/results
+        exec k6 run \
+          --tag test=basic-load \
+          --out experimental-prometheus-rw=http://prometheus:9090/api/v1/write \
+          --summary-export=/scripts/results/basic-load-summary.json \
+          /scripts/basic-load-test.js
+
+volumes:
+  pgdata:
+  grafana_data:

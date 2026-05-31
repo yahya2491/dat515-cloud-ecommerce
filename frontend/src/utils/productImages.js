@@ -1,0 +1,28 @@
+const productImages = {
+  "Whole Milk": "/images/milk.png",
+  "Cheddar Cheese": "/images/cheese.png",
+  "Bananas": "/images/banana.jpg",
+  "Sourdough Bread": "/images/bread.jpeg",
+  "Cola Soda (12-pack)": "/images/cola.png",
+  "Potato Chips": "/images/chips.png",
+  "Frozen Pizza": "/images/pizza.jpg",
+  "Paper Towels (6-pack)": "/images/papertowel.jpg",
+  "Organic Eggs (12-count)": "/images/egg.png",
+  "Greek Yogurt": "/images/yo.png",
+  "Orange Juice": "/images/oj.png",
+  "Granola Cereal": "/images/cereal.png",
+  "Peanut Butter": "/images/peanutbutter.png",
+  "Strawberry Jam": "/images/jam.png",
+  "Brown Rice": "/images/rice.jpg",
+  "Black Beans (Canned)": "/images/beans.png",
+  "Fresh Spinach": "/images/spinach.jpg",
+  "Carrots (2 lb)": "/images/Carrot.jpg",
+  "Tomato Soup": "/images/soup.png",
+  "Olive Oil": "/images/olive.png",
+  "Sea Salt Crackers": "/images/crackers.png",
+  "Dark Chocolate Bar": "/images/chocolate.png",
+  "Trail Mix": "/images/trailmix.png",
+  "Espresso Coffee Beans": "/images/coffee.png",
+};
+
+export default productImages;

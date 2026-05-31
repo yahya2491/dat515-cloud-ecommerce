@@ -1,0 +1,664 @@
+.body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafc;
+  min-height: 100vh;
+  color: #333;
+}
+.pageWrapper {
+  flex: 1; /* ✅ takes remaining space, pushing footer down */
+  padding: 2rem;
+}
+/* 🧭 Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #16a34a; /* green-600 */
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navLinks li {
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navLinks li:hover {
+  color: #16a34a;
+}
+
+/* 🖼 Hero Section */
+.hero {
+  width: 100%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+   flex-direction: column; /* stack h2, p, button vertically */
+  align-items: center;    /* center horizontally */
+  justify-content: center; /* center vertically if needed */
+   place-items: center;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.ctaBtn {
+  background: white;
+  color: #16a34a;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin: 1rem auto;
+}
+
+.ctaBtn:hover {
+  transform: scale(1.05);
+}
+
+/* 🛍 Products Section */
+.productsSection {
+  width: 100%;
+  max-width: 1100px;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin: 0 auto;
+  
+}
+
+.productsSection h3 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.productCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+}
+
+.productImage {
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(135deg, #bbf7d0, #86efac);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-weight: bold;
+  color: #16a34a;
+  margin: 0.5rem 0;
+}
+
+.addBtn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.addBtn:hover {
+  background: #15803d;
+}
+
+/* 📢 Newsletter */
+.newsletter {
+  width: 100%;
+  background: #16a34a;
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.newsletter h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.newsletter p {
+  margin-bottom: 1rem;
+}
+
+.newsletterForm {
+  display: flex;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.newsletterForm input {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px 0 0 6px;
+  font-size: 1rem;
+}
+
+.newsletterForm button {
+  background: white;
+  color: #16a34a;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.newsletterForm button:hover {
+  background: #f3f4f6;
+}
+
+/* 👣 Footer */
+.footer {
+  width: 100%;
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+
+
+.productsWrapper {
+  padding: 2rem;
+  text-align: center;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.productCard {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: #fafafa;
+  transition: transform 0.2s;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+}
+
+.productImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.userPage {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profileDetails p {
+  margin: 0.5rem 0;
+}
+
+.cartCard {
+  background: #f8f8f8;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.75rem;
+}
+
+.cartPage {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.itemInfo p {
+  margin: 0.25rem 0 0 0;
+}
+
+.itemActions input {
+  width: 50px;
+  margin-left: 0.5rem;
+}
+
+.itemActions button {
+  margin-left: 1rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cartTotal {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.checkoutBtn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/* ========== GENERAL PAGE STYLES ========== */
+
+.checkoutPage {
+  max-width: 700px;
+  margin: 3rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+}
+
+.checkoutPage h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+.checkoutPage h3 {
+  margin-top: 1rem;
+  color: #333;
+}
+
+/* ========== CART LIST ========== */
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.cartItem strong {
+  color: #111;
+}
+
+/* ========== EMAIL INPUT ========== */
+
+.checkoutPage input[type="email"] {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+  transition: border-color 0.2s ease;
+}
+
+.checkoutPage input[type="email"]:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+/* ========== CARD FORM ========== */
+
+.cardForm {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.cardForm h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #444;
+  text-align: center;
+}
+
+.cardInput {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.cardInput:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.cardRow {
+  display: flex;
+  gap: 0.7rem;
+}
+
+/* ========== BUTTON ========== */
+
+.checkoutButton {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.2rem;
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.checkoutButton:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.checkoutButton:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ========== MESSAGE ========== */
+
+.checkoutMessage {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.checkoutMessage.success {
+  color: #2e7d32;
+}
+
+.checkoutMessage.error {
+  color: #c62828;
+}
+
+.checkoutPage {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  background: #f8f8f8;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.paymentSection {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputField {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.checkoutButton {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Checkout Page Styles */
+.checkoutPage {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+
+/* Card Form */
+.cardForm {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.cardForm h3 {
+  margin-bottom: 0.75rem;
+}
+
+.cardInput {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.cardRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.checkoutButton {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkoutButton:disabled {
+  background-color: #9ccc9c;
+  cursor: not-allowed;
+}
+
+.checkoutMessage {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+/* Recommendations Section */
+.recommendationsSection {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+.recommendationsSection h3 {
+  margin-bottom: 0.75rem;
+}
+
+.recommendationsGrid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.recommendationCard {
+  flex: 1 1 calc(33.333% - 1rem);
+  min-width: 120px;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.recommendationCard p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+.confirmationBox {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #f9fff9;
+  border: 2px solid #4caf50;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.confirmationBox h1 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+.confirmationBox p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.confirmationBox button {
+  margin-top: 1.5rem;
+  background: #4caf50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.confirmationBox button:hover {
+  background: #45a049;
+}
